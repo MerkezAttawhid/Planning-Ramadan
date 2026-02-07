@@ -91,8 +91,8 @@ async function loadPlanning(type) {
       firstDay: 1,
       allDaySlot: false,
       height: "auto",
-      slotMinTime: "09:00:00",
-      slotMaxTime: "20:00:00",
+      slotMinTime: "07:00:00",
+      slotMaxTime: "23:59:00",
       nowIndicator: true,
 
       headerToolbar: {
