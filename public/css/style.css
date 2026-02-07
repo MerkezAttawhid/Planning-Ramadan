@@ -1,28 +1,11 @@
+/* =========================
+   BASE
+   ========================= */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f5f7fa;
-}
-
-.navbar {
-  background: #1e293b;
-  color: white;
-  padding: 1rem;
-}
-
-.navbar nav a {
-  color: #cbd5f5;
-  margin-right: 1rem;
-  text-decoration: none;
-}
-
-.navbar nav a.active {
-  color: white;
-  font-weight: bold;
-}
-
-.container {
-  padding: 1.5rem;
 }
 
 .card {
@@ -30,6 +13,7 @@ body {
   border-radius: 10px;
   padding: 10px;
 }
+
 /* =========================
    PAGE D’ACCUEIL
    ========================= */
@@ -43,26 +27,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   padding-top: 40px;
   text-align: center;
 }
-
 
 .home-title {
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 24px;
-
-  /* Fallback si le navigateur ne supporte pas le gradient */
-  color: #4f46e5;
-
-  /* Dégradé */
   background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .home-title::after {
   content: "";
   display: block;
@@ -73,10 +51,8 @@ body {
   background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899);
 }
 
-
 .home-logo {
   width: 110px;
-  height: auto;
   margin-bottom: 40px;
 }
 
@@ -91,137 +67,115 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  border: none;
   color: white;
-  font-size: 1.1rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
 }
 
 .home-btn:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 35px rgba(79, 70, 229, 0.4);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.25);
 }
+
+.home-btn.active {
+  outline: 4px solid rgba(255,255,255,0.85);
+}
+
 .home-btn.filles {
   background: linear-gradient(135deg, #ec4899, #db2777);
 }
-
 .home-btn.garcons {
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
 }
-
 .home-btn.femmes {
   background: linear-gradient(135deg, #a855f7, #7c3aed);
 }
-
 .home-btn.hommes {
   background: linear-gradient(135deg, #0d9488, #0f766e);
 }
-#planning-section {
-  max-width: 1200px;
-  margin: 50px auto 0;
-  padding: 0 16px;
-}
-.loading {
-  text-align: center;
-  font-size: 1rem;
-  color: #475569;
-  padding: 20px;
-  font-weight: 500;
-}
-.home-btn.active {
-  outline: 3px solid rgba(255,255,255,0.8);
-}
-
-
-.loading {
-  text-align: center;
-  font-size: 1rem;
-  color: #475569;
-  padding: 40px 0;
-  font-weight: 500;
-}
-/* =========================
-   TRANSITION PLANNING
-   ========================= */
-
 
 /* =========================
-   PLANNING OVERLAY (PRO)
+   PLANNING
    ========================= */
 
 #planning-section {
   max-width: 1200px;
+  width: 100%;
   margin: 50px auto 0;
-  padding: 0 16px;
+  padding: 0 12px;
 }
 
 .calendar-wrapper {
   position: relative;
 }
 
+/* Overlay loading */
 .calendar-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255,255,255,0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 1rem;
-  color: #475569;
   z-index: 10;
   border-radius: 10px;
 }
 
-/* Bouton actif */
-.home-btn.active {
-  outline: 3px solid rgba(255, 255, 255, 0.8);
-}
 /* =========================
-   RESPONSIVE MOBILE
+   FULLCALENDAR – DESKTOP
+   ========================= */
+
+.fc .fc-event {
+  font-size: 0.85rem;
+  padding: 2px 4px;
+}
+
+/* =========================
+   RESPONSIVE MOBILE (CLÉ)
    ========================= */
 
 @media (max-width: 768px) {
 
-  /* Page accueil */
+  /* Header */
   .home-title {
     font-size: 1.6rem;
   }
 
   .home-logo {
     width: 80px;
-    margin-bottom: 24px;
   }
 
   .home-btn {
     width: 90px;
     height: 90px;
+    font-size: 0.9rem;
+  }
+
+  /* Scroll horizontal OBLIGATOIRE */
+  .fc-scroller-harness {
+    overflow-x: auto !important;
+  }
+
+  /* Largeur mini pour voir les colonnes */
+  .fc-timegrid {
+    min-width: 950px;
+  }
+
+  /* Textes plus compacts */
+  .fc .fc-toolbar-title {
     font-size: 0.95rem;
   }
 
-  /* Planning */
-  #planning-section {
-    margin-top: 30px;
-  }
-
-  /* FullCalendar */
-  .fc .fc-toolbar-title {
-    font-size: 1rem;
-  }
-
   .fc .fc-timegrid-slot-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
 
   .fc .fc-event {
-    font-size: 0.75rem;
-    padding: 2px;
+    font-size: 0.7rem;
+    line-height: 1.1;
   }
 }
-
