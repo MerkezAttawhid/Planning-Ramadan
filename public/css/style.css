@@ -68,11 +68,12 @@ body {
 }
 
 .home-btn {
-  width: 120px;
-  height: 120px;
+  width: 105px;
+  height: 105px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
+  font-size: 0.95rem;
 
   color: white;
   font-size: 1.05rem;
@@ -178,9 +179,9 @@ body {
   }
 
   .home-btn {
-    width: 90px;
-    height: 90px;
-    font-size: 0.9rem;
+    width: 78px;
+    height: 78px;
+    font-size: 0.8rem;
   }
 
   /* plus de place au planning */
