@@ -44,8 +44,11 @@ async function loadPlanning(type) {
   });
   document.querySelector(`[data-type="${type}"]`).classList.add("active");
 
+  // 🔥 NOUVEAU : mode compact activé
+  document.body.classList.add("planning-open");
+
   section.style.display = "block";
-  section.scrollIntoView({ behavior: "smooth" });
+  section.scrollIntoView({ behavior: "smooth", block: "start" });
 
   overlay.style.display = "flex";
   overlay.innerText = "Chargement du planning…";
@@ -80,7 +83,6 @@ async function loadPlanning(type) {
   /* ================= FULLCALENDAR ================= */
 
   if (calendar) {
-    // Mise à jour des événements
     calendar.removeAllEvents();
     calendar.addEventSource(events);
 
@@ -90,14 +92,13 @@ async function loadPlanning(type) {
     }, 50);
 
   } else {
-    // Création initiale
     calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: "timeGridWeek",
       locale: "fr",
       firstDay: 1,
       allDaySlot: false,
 
-      /* 🔥 CLÉ UX : tout visible sans scroll vertical */
+      /* 🔥 tout visible */
       height: "100%",
       expandRows: true,
 
@@ -106,12 +107,11 @@ async function loadPlanning(type) {
 
       nowIndicator: true,
 
-     headerToolbar: {
-  left: "prev,next today",
-  center: "title",
-  right: "timeGridWeek,timeGridDay"
-},
-
+      headerToolbar: {
+        left: "prev,next today",
+        center: "title",
+        right: "timeGridWeek,timeGridDay"
+      },
 
       events
     });

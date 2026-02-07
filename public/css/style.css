@@ -30,8 +30,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 32px;
+  padding-top: 20px; /* ⬅️ compact */
   text-align: center;
+  transition: padding-top 0.25s ease;
 }
 
 /* =========================
@@ -41,7 +42,7 @@ body {
 .home-title {
   font-size: 2.1rem;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   color: #1e293b;
   letter-spacing: 0.3px;
 }
@@ -53,7 +54,8 @@ body {
 .home-logo {
   width: 150px;
   height: auto;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
+  transition: margin 0.25s ease, transform 0.25s ease;
 }
 
 /* =========================
@@ -62,9 +64,11 @@ body {
 
 .home-buttons {
   display: flex;
-  gap: 18px;
+  gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 6px;
+  transition: margin 0.25s ease;
 }
 
 .home-btn {
@@ -73,10 +77,9 @@ body {
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  font-size: 0.95rem;
 
   color: white;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.3px;
   text-shadow: 0 1px 2px rgba(0,0,0,0.25);
@@ -86,8 +89,8 @@ body {
 }
 
 .home-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 35px rgba(0,0,0,0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.22);
 }
 
 .home-btn.active {
@@ -109,17 +112,34 @@ body {
 }
 
 /* =========================
-   PLANNING (PLEIN ÉCRAN)
+   MODE PLANNING OUVERT
+   ========================= */
+
+body.planning-open .home-container {
+  padding-top: 8px;
+}
+
+body.planning-open .home-logo {
+  margin-bottom: 6px;
+  transform: scale(0.9);
+}
+
+body.planning-open .home-buttons {
+  margin-bottom: 4px;
+}
+
+/* =========================
+   PLANNING
    ========================= */
 
 #planning-section {
   width: 100%;
   max-width: 1200px;
-  margin: 16px auto 0;
+  margin: 12px auto 0;
   padding: 0 12px;
 
   /* 🔥 hauteur fixe pour afficher 7h → 00h */
-  height: calc(100vh - 220px);
+  height: calc(100vh - 240px);
 
   /* ❌ pas de scroll vertical */
   overflow-y: hidden;
@@ -170,12 +190,12 @@ body {
 @media (max-width: 768px) {
 
   .home-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
   .home-logo {
-    width: 110px;
-    margin-bottom: 22px;
+    width: 105px;
+    margin-bottom: 12px;
   }
 
   .home-btn {
@@ -184,9 +204,8 @@ body {
     font-size: 0.8rem;
   }
 
-  /* plus de place au planning */
   #planning-section {
-    height: calc(100vh - 190px);
+    height: calc(100vh - 210px);
   }
 
   /* scroll horizontal UNIQUEMENT */
