@@ -7,23 +7,33 @@
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body class="home">
 
-  <main class="home-container">
+<main class="home-container">
 
-    <h1 class="home-title">Planning – Ramadan</h1>
+  <h1 class="home-title">Planning – Ramadan</h1>
 
-    <img src="Images/logo.jpg" alt="Logo" class="home-logo" />
+  <img src="Images/logo.jpg" alt="Logo" class="home-logo" />
 
-    <div class="home-buttons">
-      <a href="pages/filles.html" class="home-btn filles">Filles</a>
-<a href="pages/garcons.html" class="home-btn garcons">Garçons</a>
-<a href="pages/femmes.html" class="home-btn femmes">Femmes</a>
-<a href="pages/hommes.html" class="home-btn hommes">Hommes</a>
+  <div class="home-buttons">
+    <button class="home-btn filles" data-type="filles">Filles</button>
+    <button class="home-btn garcons" data-type="garcons">Garçons</button>
+    <button class="home-btn femmes" data-type="femmes">Femmes</button>
+    <button class="home-btn hommes" data-type="hommes">Hommes</button>
+  </div>
 
-    </div>
+  <!-- Zone planning -->
+  <section id="planning-section" style="display:none;">
+    <div id="calendar" class="card"></div>
+  </section>
 
-  </main>
+</main>
+
+<!-- SCRIPTS (OBLIGATOIRES) -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 </html>

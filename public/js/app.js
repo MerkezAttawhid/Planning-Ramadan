@@ -1,38 +1,24 @@
 /* =========================================================
-   PLANNING APP
-   - FullCalendar
-   - Google Calendar (via Apps Script)
-   - Couleur intelligente par titre
+   PLANNING APP – SINGLE PAGE
    ========================================================= */
 
-/* ================= CONFIG ================= */
+const API_URL = window.APP_CONFIG.API_URL;
 
-const API_URL = window.APP_CONFIG?.API_URL;
-const PLANNING_KEY = window.PLANNING_KEY?.toLowerCase();
-
-if (!API_URL) {
-  console.error("API_URL manquante (config.js non chargé)");
-}
-
-if (!PLANNING_KEY) {
-  console.error("PLANNING_KEY manquant (défini dans le HTML)");
-}
-
-/* Palette de couleurs (stable et lisible) */
-const COLOR_PALETTE = [
-  "#2563eb", // bleu
-  "#16a34a", // vert
-  "#dc2626", // rouge
-  "#7c3aed", // violet
-  "#ea580c", // orange
-  "#0d9488", // teal
-  "#ca8a04", // jaune
-  "#9333ea"  // violet clair
-];
+let calendar = null;
 
 /* ================= UTILS ================= */
 
-/* Génère TOUJOURS la même couleur pour un même titre */
+const COLOR_PALETTE = [
+  "#2563eb",
+  "#16a34a",
+  "#dc2626",
+  "#7c3aed",
+  "#ea580c",
+  "#0d9488",
+  "#ca8a04",
+  "#9333ea"
+];
+
 function colorFromTitle(title) {
   if (!title) return COLOR_PALETTE[0];
 
@@ -40,71 +26,74 @@ function colorFromTitle(title) {
   for (let i = 0; i < title.length; i++) {
     hash = title.charCodeAt(i) + ((hash << 5) - hash);
   }
-  const index = Math.abs(hash) % COLOR_PALETTE.length;
-  return COLOR_PALETTE[index];
+  return COLOR_PALETTE[Math.abs(hash) % COLOR_PALETTE.length];
 }
 
-/* ================= API ================= */
+/* ================= CORE ================= */
 
-async function fetchEvents() {
-  if (!API_URL || !PLANNING_KEY) {
-    throw new Error("Configuration incomplète");
-  }
+async function loadPlanning(type) {
+  const section = document.getElementById("planning-section");
+  section.style.display = "block";
+  section.scrollIntoView({ behavior: "smooth" });
 
-  const res = await fetch(`${API_URL}?type=${PLANNING_KEY}`);
-  if (!res.ok) throw new Error("Erreur API");
-  return await res.json();
-}
-
-/* ================= APP ================= */
-
-document.addEventListener("DOMContentLoaded", async () => {
-  const calendarEl = document.getElementById("calendar");
-
-  if (!calendarEl) return;
-
-  let events = [];
-
+  let data;
   try {
-    const data = await fetchEvents();
-
-    events = data.map(ev => {
-      const title = ev.title || "Cours";
-      const color = colorFromTitle(title);
-
-      return {
-        title,
-        start: ev.start,
-        end: ev.end,
-        backgroundColor: color,
-        borderColor: color
-      };
-    });
-
+    const res = await fetch(`${API_URL}?type=${type}`);
+    if (!res.ok) throw new Error("API error");
+    data = await res.json();
   } catch (err) {
-    console.error(err);
-    calendarEl.innerHTML =
-      "<p>❌ Impossible de charger le planning (vérifie la console)</p>";
+    section.innerHTML = "<p>❌ Impossible de charger le planning</p>";
     return;
   }
 
-  const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: "timeGridWeek",
-    locale: "fr",
-    firstDay: 1,
-    allDaySlot: false,
-    height: "auto",
-    slotMinTime: "08:00:00",
-    slotMaxTime: "22:00:00",
-
-    headerToolbar: {
-      left: "prev,next today",
-      center: "title",
-      right: "timeGridWeek,timeGridDay,dayGridMonth"
-    },
-
-    events
+  const events = data.map(ev => {
+    const color = colorFromTitle(ev.title);
+    return {
+      title: ev.title || "Cours",
+      start: ev.start,
+      end: ev.end,
+      backgroundColor: color,
+      borderColor: color
+    };
   });
 
+  if (calendar) {
+    calendar.removeAllEvents();
+    calendar.addEventSource(events);
+    return;
+  }
+
+  calendar = new FullCalendar.Calendar(
+    document.getElementById("calendar"),
+    {
+      initialView: "timeGridWeek",
+      locale: "fr",
+      firstDay: 1,
+      allDaySlot: false,
+      height: "auto",
+      slotMinTime: "09:00:00",
+      slotMaxTime: "20:00:00",
+      nowIndicator: true,
+
+      headerToolbar: {
+        left: "prev,next today",
+        center: "title",
+        right: "timeGridWeek,timeGridDay,dayGridMonth"
+      },
+
+      events
+    }
+  );
+
   calendar.render();
+}
+
+/* ================= EVENTS ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".home-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      loadPlanning(btn.dataset.type);
+    });
+  });
 });

@@ -122,3 +122,9 @@ body {
 .home-btn.hommes {
   background: linear-gradient(135deg, #0d9488, #0f766e);
 }
+#planning-section {
+  max-width: 1200px;
+  margin: 50px auto 0;
+  padding: 0 16px;
+}
+
