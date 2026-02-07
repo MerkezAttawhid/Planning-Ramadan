@@ -1,0 +1,12 @@
+# Tout ignorer par défaut
+*
+
+# Autoriser Git
+!.gitignore
+
+# Autoriser le site uniquement
+!public/
+!public/**
+
+# Sécurité
+.env
