@@ -63,7 +63,7 @@ body {
   color: white;
   font-size: 1.05rem;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -77,16 +77,16 @@ body {
 }
 
 .home-btn.filles {
-  background: linear-gradient(135deg, #ec4899, #db2777);
+  background: linear-gradient(135deg, #f9a8d4, #f472b6);
 }
 .home-btn.garcons {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #93c5fd, #60a5fa);
 }
 .home-btn.femmes {
-  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
 }
 .home-btn.hommes {
-  background: linear-gradient(135deg, #0d9488, #0f766e);
+  background: linear-gradient(135deg, #6ee7b7, #34d399);
 }
 
 /* =========================
