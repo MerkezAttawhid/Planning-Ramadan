@@ -114,14 +114,19 @@ body {
 #planning-section {
   width: 100%;
   max-width: 1200px;
-  margin: 40px auto 0;
+
+  /* 🔼 remonte le planning */
+  margin: 20px auto 0;
+
   padding: 0 12px;
 
-  /* 🔥 MAGIE UX */
-  max-height: calc(100vh - 330px);
+  /* ⬆️ plus de place pour le calendrier */
+  max-height: calc(100vh - 260px);
+
   overflow-y: auto;
   scroll-behavior: smooth;
 }
+
 
 .calendar-wrapper {
   position: relative;
@@ -175,9 +180,10 @@ body {
   }
 
   /* Planning plus grand */
-  #planning-section {
-    max-height: calc(100vh - 260px);
-  }
+ #planning-section {
+  max-height: calc(100vh - 200px);
+}
+
 
   /* Scroll horizontal pour week */
   .fc-scroller-harness {
