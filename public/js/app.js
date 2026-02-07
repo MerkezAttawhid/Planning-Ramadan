@@ -1,5 +1,5 @@
 /* =========================================================
-   PLANNING APP – SINGLE PAGE
+   PLANNING APP – SINGLE PAGE (STABLE)
    ========================================================= */
 
 const API_URL = window.APP_CONFIG.API_URL;
@@ -30,27 +30,26 @@ function colorFromTitle(title) {
 /* ================= CORE ================= */
 
 async function loadPlanning(type) {
-  // Bouton actif
-  document.querySelectorAll(".home-btn").forEach(btn => {
-    btn.classList.remove("active");
-  });
-  document.querySelector(`[data-type="${type}"]`).classList.add("active");
-
+  const buttons = document.querySelectorAll(".home-btn");
   const section = document.getElementById("planning-section");
-  const loading = document.getElementById("loading");
+  const overlay = document.getElementById("calendar-overlay");
   const calendarEl = document.getElementById("calendar");
 
-  section.style.display = "block";
-  section.scrollIntoView({ behavior: "smooth" });
-
-  // TRANSITION
-  loading.style.display = "block";
-  calendarEl.classList.add("loading");
-
-  document.querySelectorAll(".home-btn").forEach(btn => {
+  // Boutons : état loading
+  buttons.forEach(btn => {
+    btn.classList.remove("active");
     btn.disabled = true;
     btn.style.opacity = "0.6";
   });
+  document.querySelector(`[data-type="${type}"]`).classList.add("active");
+
+  // Affichage section
+  section.style.display = "block";
+  section.scrollIntoView({ behavior: "smooth" });
+
+  // Overlay ON
+  overlay.style.display = "flex";
+  overlay.innerText = "Chargement du planning…";
 
   let data;
   try {
@@ -58,7 +57,8 @@ async function loadPlanning(type) {
     if (!res.ok) throw new Error("API error");
     data = await res.json();
   } catch (err) {
-    loading.innerText = "❌ Erreur de chargement";
+    overlay.innerText = "❌ Erreur de chargement";
+    buttons.forEach(btn => (btn.disabled = false));
     return;
   }
 
@@ -73,9 +73,17 @@ async function loadPlanning(type) {
     };
   });
 
+  /* ===== FULLCALENDAR ===== */
+
   if (calendar) {
     calendar.removeAllEvents();
     calendar.addEventSource(events);
+
+    // 🔥 FIX FULLCALENDAR (changement de source)
+    setTimeout(() => {
+      calendar.updateSize();
+    }, 50);
+
   } else {
     calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: "timeGridWeek",
@@ -86,16 +94,29 @@ async function loadPlanning(type) {
       slotMinTime: "09:00:00",
       slotMaxTime: "20:00:00",
       nowIndicator: true,
+
+      headerToolbar: {
+        left: "prev,next today",
+        center: "title",
+        right: "timeGridWeek,timeGridDay,dayGridMonth"
+      },
+
       events
     });
+
     calendar.render();
+
+    // 🔥 FIX FULLCALENDAR (premier render)
+    setTimeout(() => {
+      calendar.updateSize();
+    }, 50);
   }
 
-  // FIN TRANSITION
-  loading.style.display = "none";
-  calendarEl.classList.remove("loading");
+  // Overlay OFF
+  overlay.style.display = "none";
 
-  document.querySelectorAll(".home-btn").forEach(btn => {
+  // Boutons réactivés
+  buttons.forEach(btn => {
     btn.disabled = false;
     btn.style.opacity = "1";
   });

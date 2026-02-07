@@ -137,9 +137,7 @@ body {
 .home-btn.active {
   outline: 3px solid rgba(255,255,255,0.8);
 }
-#calendar.loading {
-  display: none;
-}
+
 
 .loading {
   text-align: center;
@@ -147,5 +145,42 @@ body {
   color: #475569;
   padding: 40px 0;
   font-weight: 500;
+}
+/* =========================
+   TRANSITION PLANNING
+   ========================= */
+
+
+/* =========================
+   PLANNING OVERLAY (PRO)
+   ========================= */
+
+#planning-section {
+  max-width: 1200px;
+  margin: 50px auto 0;
+  padding: 0 16px;
+}
+
+.calendar-wrapper {
+  position: relative;
+}
+
+.calendar-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #475569;
+  z-index: 10;
+  border-radius: 10px;
+}
+
+/* Bouton actif */
+.home-btn.active {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
 }
 
