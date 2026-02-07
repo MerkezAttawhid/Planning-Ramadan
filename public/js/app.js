@@ -35,7 +35,8 @@ async function loadPlanning(type) {
   const overlay = document.getElementById("calendar-overlay");
   const calendarEl = document.getElementById("calendar");
 
-  // Boutons : état loading
+  /* ---------- UI : loading ---------- */
+
   buttons.forEach(btn => {
     btn.classList.remove("active");
     btn.disabled = true;
@@ -43,13 +44,13 @@ async function loadPlanning(type) {
   });
   document.querySelector(`[data-type="${type}"]`).classList.add("active");
 
-  // Affichage section
   section.style.display = "block";
   section.scrollIntoView({ behavior: "smooth" });
 
-  // Overlay ON
   overlay.style.display = "flex";
   overlay.innerText = "Chargement du planning…";
+
+  /* ---------- Fetch API ---------- */
 
   let data;
   try {
@@ -58,7 +59,10 @@ async function loadPlanning(type) {
     data = await res.json();
   } catch (err) {
     overlay.innerText = "❌ Erreur de chargement";
-    buttons.forEach(btn => (btn.disabled = false));
+    buttons.forEach(btn => {
+      btn.disabled = false;
+      btn.style.opacity = "1";
+    });
     return;
   }
 
@@ -73,32 +77,39 @@ async function loadPlanning(type) {
     };
   });
 
-  /* ===== FULLCALENDAR ===== */
+  /* ================= FULLCALENDAR ================= */
 
   if (calendar) {
+    // Mise à jour des événements
     calendar.removeAllEvents();
     calendar.addEventSource(events);
 
-    // 🔥 FIX FULLCALENDAR (changement de source)
     setTimeout(() => {
       calendar.updateSize();
+      calendar.scrollToTime("07:00:00");
     }, 50);
 
   } else {
+    // Création initiale
     calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: window.innerWidth < 768 ? "timeGridDay" : "timeGridWeek",
       locale: "fr",
       firstDay: 1,
       allDaySlot: false,
-      height: "auto",
+
+      /* 🔥 CLÉ UX : tout visible sans scroll vertical */
+      height: "100%",
+      expandRows: true,
+
       slotMinTime: "07:00:00",
-      slotMaxTime: "23:59:00",
+      slotMaxTime: "24:00:00",
+
       nowIndicator: true,
 
       headerToolbar: {
         left: "prev,next today",
         center: "title",
-        right: "timeGridWeek,timeGridDay,dayGridMonth"
+        right: "timeGridWeek,timeGridDay"
       },
 
       events
@@ -106,17 +117,16 @@ async function loadPlanning(type) {
 
     calendar.render();
 
-    // 🔥 FIX FULLCALENDAR (premier render)
     setTimeout(() => {
-      calendar.updateSize();calendar.scrollToTime("08:00:00");
-
+      calendar.updateSize();
+      calendar.scrollToTime("07:00:00");
     }, 50);
   }
 
-  // Overlay OFF
+  /* ---------- UI : fin loading ---------- */
+
   overlay.style.display = "none";
 
-  // Boutons réactivés
   buttons.forEach(btn => {
     btn.disabled = false;
     btn.style.opacity = "1";

@@ -7,7 +7,7 @@ body {
   font-family: Arial, sans-serif;
   background: #f5f7fa;
 
-  /* 🔒 Empêche le scroll global */
+  /* 🔒 empêche le scroll global */
   overflow: hidden;
 }
 
@@ -30,7 +30,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 40px;
+  padding-top: 32px;
   text-align: center;
 }
 
@@ -39,10 +39,10 @@ body {
    ========================= */
 
 .home-title {
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   font-weight: 600;
-  margin-bottom: 20px;
-  color: #1e293b; /* sobre */
+  margin-bottom: 16px;
+  color: #1e293b;
   letter-spacing: 0.3px;
 }
 
@@ -53,7 +53,7 @@ body {
 .home-logo {
   width: 150px;
   height: auto;
-  margin-bottom: 36px;
+  margin-bottom: 28px;
 }
 
 /* =========================
@@ -62,7 +62,7 @@ body {
 
 .home-buttons {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -108,28 +108,29 @@ body {
 }
 
 /* =========================
-   PLANNING (ZONE SCROLLABLE)
+   PLANNING (PLEIN ÉCRAN)
    ========================= */
 
 #planning-section {
   width: 100%;
   max-width: 1200px;
-
-  /* 🔼 remonte le planning */
-  margin: 20px auto 0;
-
+  margin: 16px auto 0;
   padding: 0 12px;
 
-  /* ⬆️ plus de place pour le calendrier */
-  max-height: calc(100vh - 260px);
+  /* 🔥 hauteur fixe pour afficher 7h → 00h */
+  height: calc(100vh - 220px);
 
-  overflow-y: auto;
-  scroll-behavior: smooth;
+  /* ❌ pas de scroll vertical */
+  overflow-y: hidden;
 }
 
+/* =========================
+   CALENDAR WRAPPER
+   ========================= */
 
 .calendar-wrapper {
   position: relative;
+  height: 100%;
 }
 
 /* =========================
@@ -152,6 +153,10 @@ body {
    FULLCALENDAR – DESKTOP
    ========================= */
 
+.fc {
+  height: 100% !important;
+}
+
 .fc .fc-event {
   font-size: 0.85rem;
   padding: 2px 4px;
@@ -163,14 +168,13 @@ body {
 
 @media (max-width: 768px) {
 
-  /* Header */
   .home-title {
     font-size: 1.6rem;
   }
 
   .home-logo {
     width: 110px;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
   }
 
   .home-btn {
@@ -179,15 +183,15 @@ body {
     font-size: 0.9rem;
   }
 
-  /* Planning plus grand */
- #planning-section {
-  max-height: calc(100vh - 200px);
-}
+  /* plus de place au planning */
+  #planning-section {
+    height: calc(100vh - 190px);
+  }
 
-
-  /* Scroll horizontal pour week */
+  /* scroll horizontal UNIQUEMENT */
   .fc-scroller-harness {
     overflow-x: auto !important;
+    overflow-y: hidden !important;
   }
 
   .fc-timegrid {
