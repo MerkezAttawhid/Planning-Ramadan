@@ -127,4 +127,25 @@ body {
   margin: 50px auto 0;
   padding: 0 16px;
 }
+.loading {
+  text-align: center;
+  font-size: 1rem;
+  color: #475569;
+  padding: 20px;
+  font-weight: 500;
+}
+.home-btn.active {
+  outline: 3px solid rgba(255,255,255,0.8);
+}
+#calendar.loading {
+  display: none;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1rem;
+  color: #475569;
+  padding: 40px 0;
+  font-weight: 500;
+}
 

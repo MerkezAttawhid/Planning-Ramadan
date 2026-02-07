@@ -3,10 +3,9 @@
    ========================================================= */
 
 const API_URL = window.APP_CONFIG.API_URL;
-
 let calendar = null;
 
-/* ================= UTILS ================= */
+/* ================= COULEURS ================= */
 
 const COLOR_PALETTE = [
   "#2563eb",
@@ -21,7 +20,6 @@ const COLOR_PALETTE = [
 
 function colorFromTitle(title) {
   if (!title) return COLOR_PALETTE[0];
-
   let hash = 0;
   for (let i = 0; i < title.length; i++) {
     hash = title.charCodeAt(i) + ((hash << 5) - hash);
@@ -32,9 +30,27 @@ function colorFromTitle(title) {
 /* ================= CORE ================= */
 
 async function loadPlanning(type) {
+  // Bouton actif
+  document.querySelectorAll(".home-btn").forEach(btn => {
+    btn.classList.remove("active");
+  });
+  document.querySelector(`[data-type="${type}"]`).classList.add("active");
+
   const section = document.getElementById("planning-section");
+  const loading = document.getElementById("loading");
+  const calendarEl = document.getElementById("calendar");
+
   section.style.display = "block";
   section.scrollIntoView({ behavior: "smooth" });
+
+  // TRANSITION
+  loading.style.display = "block";
+  calendarEl.classList.add("loading");
+
+  document.querySelectorAll(".home-btn").forEach(btn => {
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+  });
 
   let data;
   try {
@@ -42,7 +58,7 @@ async function loadPlanning(type) {
     if (!res.ok) throw new Error("API error");
     data = await res.json();
   } catch (err) {
-    section.innerHTML = "<p>❌ Impossible de charger le planning</p>";
+    loading.innerText = "❌ Erreur de chargement";
     return;
   }
 
@@ -60,12 +76,8 @@ async function loadPlanning(type) {
   if (calendar) {
     calendar.removeAllEvents();
     calendar.addEventSource(events);
-    return;
-  }
-
-  calendar = new FullCalendar.Calendar(
-    document.getElementById("calendar"),
-    {
+  } else {
+    calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: "timeGridWeek",
       locale: "fr",
       firstDay: 1,
@@ -74,18 +86,19 @@ async function loadPlanning(type) {
       slotMinTime: "09:00:00",
       slotMaxTime: "20:00:00",
       nowIndicator: true,
-
-      headerToolbar: {
-        left: "prev,next today",
-        center: "title",
-        right: "timeGridWeek,timeGridDay,dayGridMonth"
-      },
-
       events
-    }
-  );
+    });
+    calendar.render();
+  }
 
-  calendar.render();
+  // FIN TRANSITION
+  loading.style.display = "none";
+  calendarEl.classList.remove("loading");
+
+  document.querySelectorAll(".home-btn").forEach(btn => {
+    btn.disabled = false;
+    btn.style.opacity = "1";
+  });
 }
 
 /* ================= EVENTS ================= */
