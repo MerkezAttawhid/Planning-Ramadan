@@ -92,7 +92,7 @@ async function loadPlanning(type) {
   } else {
     // Création initiale
     calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: window.innerWidth < 768 ? "timeGridDay" : "timeGridWeek",
+      initialView: "timeGridWeek",
       locale: "fr",
       firstDay: 1,
       allDaySlot: false,
@@ -106,11 +106,12 @@ async function loadPlanning(type) {
 
       nowIndicator: true,
 
-      headerToolbar: {
-        left: "prev,next today",
-        center: "title",
-        right: "timeGridWeek,timeGridDay"
-      },
+     headerToolbar: {
+  left: "prev,next today",
+  center: "title",
+  right: "timeGridWeek,timeGridDay"
+},
+
 
       events
     });
