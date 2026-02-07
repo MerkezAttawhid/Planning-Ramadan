@@ -30,3 +30,95 @@ body {
   border-radius: 10px;
   padding: 10px;
 }
+/* =========================
+   PAGE D’ACCUEIL
+   ========================= */
+
+.home {
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 40px;
+  text-align: center;
+}
+
+
+.home-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+
+  /* Fallback si le navigateur ne supporte pas le gradient */
+  color: #4f46e5;
+
+  /* Dégradé */
+  background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.home-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899);
+}
+
+
+.home-logo {
+  width: 110px;
+  height: auto;
+  margin-bottom: 40px;
+}
+
+.home-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-btn {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+}
+
+.home-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px rgba(79, 70, 229, 0.4);
+}
+.home-btn.filles {
+  background: linear-gradient(135deg, #ec4899, #db2777);
+}
+
+.home-btn.garcons {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.home-btn.femmes {
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+}
+
+.home-btn.hommes {
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+}
