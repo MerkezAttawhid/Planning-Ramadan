@@ -86,7 +86,7 @@ async function loadPlanning(type) {
 
   } else {
     calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: "timeGridWeek",
+      initialView: window.innerWidth < 768 ? "timeGridDay" : "timeGridWeek",
       locale: "fr",
       firstDay: 1,
       allDaySlot: false,
@@ -108,7 +108,8 @@ async function loadPlanning(type) {
 
     // 🔥 FIX FULLCALENDAR (premier render)
     setTimeout(() => {
-      calendar.updateSize();
+      calendar.updateSize();calendar.scrollToTime("08:00:00");
+
     }, 50);
   }
 
