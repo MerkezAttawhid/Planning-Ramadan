@@ -8,15 +8,13 @@ let calendar = null;
 /* ================= COULEURS ================= */
 
 const COLOR_PALETTE = [
-  "#2563eb",
-  "#16a34a",
-  "#dc2626",
-  "#7c3aed",
-  "#ea580c",
-  "#0d9488",
-  "#ca8a04",
-  "#9333ea"
+  "linear-gradient(135deg, #6366f1, #8b5cf6)",
+  "linear-gradient(135deg, #06b6d4, #3b82f6)",
+  "linear-gradient(135deg, #10b981, #14b8a6)",
+  "linear-gradient(135deg, #f59e0b, #f97316)",
+  "linear-gradient(135deg, #ef4444, #f43f5e)"
 ];
+
 
 function colorFromTitle(title) {
   if (!title) return COLOR_PALETTE[0];
@@ -70,15 +68,19 @@ async function loadPlanning(type) {
   }
 
   const events = data.map(ev => {
-    const color = colorFromTitle(ev.title);
-    return {
-      title: ev.title || "Cours",
-      start: ev.start,
-      end: ev.end,
-      backgroundColor: color,
-      borderColor: color
-    };
-  });
+  const gradient = COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)];
+
+  return {
+    title: ev.title || "Cours",
+    start: ev.start,
+    end: ev.end,
+    backgroundColor: "transparent",
+    borderColor: "transparent",
+    classNames: ["soft-event"],
+    extendedProps: { gradient }
+  };
+});
+
 
   /* ================= FULLCALENDAR ================= */
 
@@ -92,7 +94,7 @@ async function loadPlanning(type) {
     }, 50);
 
   } else {
-    calendar = new FullCalendar.Calendar(calendarEl, {
+   calendar = new FullCalendar.Calendar(calendarEl, {
   initialView: "timeGridWeek",
   locale: "fr",
   firstDay: 1,
@@ -116,8 +118,13 @@ async function loadPlanning(type) {
     alert(info.event.title + "\n" + info.event.start.toLocaleString());
   },
 
+  eventDidMount: function(info) {
+    info.el.style.background = info.event.extendedProps.gradient;
+  },
+
   events
 });
+
 
 
     calendar.render();
