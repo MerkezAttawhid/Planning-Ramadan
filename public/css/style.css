@@ -81,21 +81,17 @@ html, body {
 @media (max-width: 768px) {
 
   .home {
-    padding-top: 0;   /* 🔥 IMPORTANT */
+    padding-top: 0; /* colle en haut */
   }
 
-  .home-logo {
-    width: 160px;
-    margin-bottom: 25px;
-  }
-
-  .home-btn {
-    width: 95px;
-    height: 95px;
-    font-size: 0.9rem;
+  .home-banner {
+    height: auto;       /* plus de hauteur forcée */
+    max-height: 220px;  /* limite raisonnable */
+    object-fit: contain; /* montre toute l'image */
   }
 
 }
+
 
 
 /* =========================
