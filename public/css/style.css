@@ -5,16 +5,13 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5f7fa;
-
-  /* 🔒 empêche le scroll global */
-  overflow: hidden;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
 }
 
 .card {
   background: white;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 12px;
+  padding: 12px;
 }
 
 /* =========================
@@ -22,7 +19,6 @@ body {
    ========================= */
 
 .home {
-  background: #f8fafc;
   min-height: 100vh;
 }
 
@@ -30,9 +26,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px; /* ⬅️ compact */
+  padding-top: 30px;
   text-align: center;
-  transition: padding-top 0.25s ease;
 }
 
 /* =========================
@@ -40,11 +35,10 @@ body {
    ========================= */
 
 .home-title {
-  font-size: 2.1rem;
+  font-size: 2.2rem;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   color: #1e293b;
-  letter-spacing: 0.3px;
 }
 
 /* =========================
@@ -53,9 +47,7 @@ body {
 
 .home-logo {
   width: 150px;
-  height: auto;
-  margin-bottom: 16px;
-  transition: margin 0.25s ease, transform 0.25s ease;
+  margin-bottom: 25px;
 }
 
 /* =========================
@@ -64,374 +56,172 @@ body {
 
 .home-buttons {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 6px;
-  transition: margin 0.25s ease;
 }
 
 .home-btn {
-  width: 105px;
-  height: 105px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  border: none;
   cursor: pointer;
 
-  color: white;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  box-shadow: 0 14px 32px rgba(0,0,0,0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .home-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.28);
 }
 
 .home-btn.active {
-  outline: 4px solid rgba(255,255,255,0.85);
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,0.8),
+    0 14px 32px rgba(0,0,0,0.18);
 }
 
-/* Pastel */
+/* Couleurs */
+
 .home-btn.filles {
   background: linear-gradient(135deg, #f9a8d4, #f472b6);
 }
+
 .home-btn.garcons {
   background: linear-gradient(135deg, #93c5fd, #60a5fa);
 }
+
 .home-btn.femmes {
   background: linear-gradient(135deg, #c4b5fd, #a78bfa);
 }
+
 .home-btn.hommes {
   background: linear-gradient(135deg, #6ee7b7, #34d399);
 }
 
 /* =========================
-   MODE PLANNING OUVERT
+   PAGE PLANNING FULLSCREEN
    ========================= */
 
-body.planning-open .home-container {
-  padding-top: 8px;
+.planning-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-body.planning-open .home-logo {
-  margin-bottom: 6px;
-  transform: scale(0.9);
+.planning-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: white;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
 }
 
-body.planning-open .home-buttons {
-  margin-bottom: 4px;
+.planning-header h1 {
+  font-size: 1.2rem;
+  margin: 0;
 }
 
-/* =========================
-   PLANNING
-   ========================= */
-
-#planning-section {
-  width: 100%;
-  max-width: 1200px;
-  margin: 12px auto 0;
-  padding: 0 12px;
-
-  /* 🔥 hauteur fixe pour afficher 7h → 00h */
-  height: calc(100vh - 240px);
-
-  /* ❌ pas de scroll vertical */
-  overflow-y: hidden;
+.back-btn {
+  text-decoration: none;
+  font-weight: 500;
+  color: #6366f1;
 }
 
-/* =========================
-   CALENDAR WRAPPER
-   ========================= */
+.planning-container {
+  flex: 1;
+  padding: 16px;
+}
 
 .calendar-wrapper {
   position: relative;
   height: 100%;
 }
 
+#calendar {
+  height: 100% !important;
+}
+
 /* =========================
-   OVERLAY LOADING
+   LOADER
    ========================= */
 
 .calendar-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  z-index: 10;
-  border-radius: 10px;
+  z-index: 50;
+  border-radius: 16px;
+}
+
+.loader-box {
+  background: white;
+  padding: 24px 30px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.loader-spinner {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #6366f1;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* =========================
-   FULLCALENDAR – DESKTOP
+   FULLCALENDAR STYLE
    ========================= */
 
-.fc {
-  height: 100% !important;
-}
-
-.fc .fc-event {
-  font-size: 0.85rem;
-  padding: 2px 4px;
-}
-
-/* =========================
-   RESPONSIVE MOBILE
-   ========================= */
-
-@media (max-width: 768px) {
-
-  .home-title {
-    font-size: 1.5rem;
-  }
-
-  .home-logo {
-    width: 105px;
-    margin-bottom: 12px;
-  }
-
-  .home-btn {
-    width: 78px;
-    height: 78px;
-    font-size: 0.8rem;
-  }
-
-  #planning-section {
-    height: calc(100vh - 210px);
-  }
-
-
-  .fc .fc-toolbar-title {
-    font-size: 0.95rem;
-  }
-
-  .fc .fc-timegrid-slot-label {
-    font-size: 0.7rem;
-  }
-
-  .fc .fc-event {
-    font-size: 0.7rem;
-    line-height: 1.1;
-  }
-}
-/* =========================
-   FULLCALENDAR MODERN UI
-   ========================= */
-
-/* Toolbar */
-.fc .fc-toolbar {
-  margin-bottom: 12px;
-}
-
-.fc .fc-button {
-  background: #f1f5f9;
-  border: none;
-  color: #334155;
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.fc .fc-button:hover {
-  background: #e2e8f0;
-}
-
-.fc .fc-button-active {
-  background: #2563eb !important;
-  color: white !important;
-}
-
-/* Title */
-.fc .fc-toolbar-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #1e293b;
-}
-
-/* Grille plus clean */
-.fc .fc-timegrid-slot {
-  border-color: #f1f5f9;
-}
-
-.fc .fc-timegrid-col-frame {
-  border-right: 1px solid #f1f5f9;
-}
-
-.fc .fc-scrollgrid {
-  border: none;
-}
-
-/* Heure actuelle */
-.fc .fc-timegrid-now-indicator-line {
-  border-color: #ef4444;
-  border-width: 2px;
-}
-
-/* Events modernes */
-.fc .fc-event {
-  border: none !important;
-  border-radius: 8px;
-  padding: 6px 8px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.fc .fc-event:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-}
-
-/* Slot heure plus discret */
-.fc .fc-timegrid-slot-label {
-  color: #64748b;
-  font-size: 0.75rem;
-}
-
-/* Fond jours weekend léger */
-.fc-day-sat,
-.fc-day-sun {
-  background-color: #f8fafc;
-}
-/* =========================
-   FULLCALENDAR MODERN PRO
-   ========================= */
-
-/* Enlève la bordure générale */
 .fc-scrollgrid,
 .fc-theme-standard td,
 .fc-theme-standard th {
   border: none !important;
 }
 
-/* Lignes horaires ultra légères */
 .fc-timegrid-slot {
   border-top: 1px solid #f1f5f9 !important;
 }
 
-/* Colonnes séparées légèrement */
 .fc-timegrid-col {
   border-right: 1px solid #f8fafc !important;
 }
 
-/* Header jours plus clean */
-.fc-col-header-cell {
-  background: #ffffff;
-  font-weight: 600;
-  color: #1e293b;
-  padding: 12px 0;
-}
-
-/* Toolbar moderne */
-.fc .fc-toolbar {
-  margin-bottom: 18px;
-}
-
-.fc .fc-button {
-  background: #f1f5f9 !important;
-  border: none !important;
-  color: #334155 !important;
-  border-radius: 10px !important;
-  padding: 6px 14px !important;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.fc .fc-button:hover {
-  background: #e2e8f0 !important;
-}
-
-.fc .fc-button-active {
-  background: #2563eb !important;
-  color: white !important;
-}
-
-/* Titre plus premium */
 .fc-toolbar-title {
   font-size: 1.6rem !important;
   font-weight: 600 !important;
-  letter-spacing: 0.5px;
+  color: #1e293b;
 }
 
-/* Events plus beaux */
-.fc-event {
-  border: none !important;
-  border-radius: 10px !important;
-  padding: 8px !important;
-  font-size: 0.85rem !important;
-  font-weight: 500 !important;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: all 0.2s ease;
-}
-
-.fc-event:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
-
-/* Supprimer le fond jaune du weekend */
-.fc-day-sat,
-.fc-day-sun {
-  background: #ffffff !important;
-}
-/* ===============================
-   SOFT UI – MODERNE COLORÉ
-   =============================== */
-
-/* Fond global plus doux */
-body {
-  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-}
-
-/* Header jours */
-.fc-col-header-cell {
-  background: transparent;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #334155;
-  padding: 14px 0;
-}
-
-/* Allège la grille */
-.fc-scrollgrid,
-.fc-theme-standard td,
-.fc-theme-standard th {
-  border: none !important;
-}
-
-.fc-timegrid-slot {
-  border-top: 1px solid #f1f5f9 !important;
-}
-
-.fc-timegrid-col {
-  border-right: 1px solid #f8fafc !important;
-}
-
-/* Toolbar moderne */
 .fc .fc-button {
   background: #ffffff !important;
   border: none !important;
   color: #334155 !important;
   border-radius: 12px !important;
   padding: 8px 16px !important;
-  font-weight: 500;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  transition: all 0.2s ease;
-}
-
-.fc .fc-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .fc .fc-button-active {
@@ -439,49 +229,38 @@ body {
   color: white !important;
 }
 
-/* Titre */
-.fc-toolbar-title {
-  font-size: 1.7rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.5px;
-  color: #1e293b;
-}
-
-/* EVENTS STYLE SOFT UI */
 .fc-event {
   border: none !important;
   border-radius: 16px !important;
   padding: 10px 12px !important;
-  font-size: 0.85rem !important;
   font-weight: 500 !important;
   color: white !important;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .fc-event:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 35px rgba(0,0,0,0.25);
 }
 
-/* Supprime fond weekend */
-.fc-day-sat,
-.fc-day-sun {
-  background: transparent !important;
-}
-/* Permet au texte des events de respirer */
-.fc-event-title,
-.fc-event-time {
-  white-space: normal !important;
-}
+/* =========================
+   RESPONSIVE
+   ========================= */
 
-/* Augmente légèrement la hauteur minimale */
-.fc-timegrid-event {
-  min-height: 50px !important;
-}
+@media (max-width: 768px) {
 
-/* Permet au contenu de ne pas être coupé */
-.fc-event-main {
-  overflow: visible !important;
-}
+  .home-btn {
+    width: 90px;
+    height: 90px;
+    font-size: 0.85rem;
+  }
 
+  .fc-toolbar-title {
+    font-size: 1rem !important;
+  }
+
+  .fc-event {
+    font-size: 0.75rem !important;
+  }
+
+}

@@ -29,27 +29,35 @@ function colorFromTitle(title) {
 
 async function loadPlanning(type) {
   const buttons = document.querySelectorAll(".home-btn");
-  const section = document.getElementById("planning-section");
-  const overlay = document.getElementById("calendar-overlay");
-  const calendarEl = document.getElementById("calendar");
+const section = document.getElementById("planning-section");
+const overlay = document.getElementById("calendar-overlay");
+const calendarEl = document.getElementById("calendar");
 
-  /* ---------- UI : loading ---------- */
+/* ---------- UI : loading ---------- */
 
+if (buttons.length) {
   buttons.forEach(btn => {
     btn.classList.remove("active");
     btn.disabled = true;
     btn.style.opacity = "0.6";
   });
-  document.querySelector(`[data-type="${type}"]`).classList.add("active");
 
-  // 🔥 NOUVEAU : mode compact activé
+  const activeBtn = document.querySelector(`[data-type="${type}"]`);
+  if (activeBtn) activeBtn.classList.add("active");
+}
+
+if (section) {
   document.body.classList.add("planning-open");
-
   section.style.display = "block";
   section.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
+if (overlay) {
   overlay.style.display = "flex";
-  overlay.innerText = "Chargement du planning…";
+}
+
+
+
 
   /* ---------- Fetch API ---------- */
 
@@ -58,14 +66,26 @@ async function loadPlanning(type) {
     const res = await fetch(`${API_URL}?type=${type}`);
     if (!res.ok) throw new Error("API error");
     data = await res.json();
-  } catch (err) {
-    overlay.innerText = "❌ Erreur de chargement";
-    buttons.forEach(btn => {
-      btn.disabled = false;
-      btn.style.opacity = "1";
-    });
-    return;
+ } catch (err) {
+
+  if (overlay) {
+    overlay.innerHTML = `
+      <div class="loader-box">
+        <p style="color:#ef4444;font-weight:600;">
+          ❌ Erreur de chargement
+        </p>
+      </div>
+    `;
   }
+
+  buttons.forEach(btn => {
+    btn.disabled = false;
+    btn.style.opacity = "1";
+  });
+
+  return;
+}
+
 
   const events = data.map(ev => {
   const gradient = COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)];
@@ -152,7 +172,7 @@ async function loadPlanning(type) {
 
   /* ---------- UI : fin loading ---------- */
 
-  overlay.style.display = "none";
+  if (overlay) overlay.style.display = "none";
 
   buttons.forEach(btn => {
     btn.disabled = false;
@@ -163,9 +183,18 @@ async function loadPlanning(type) {
 /* ================= EVENTS ================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  // Si on est sur une page planning dédiée
+  if (window.PLANNING_KEY) {
+    loadPlanning(window.PLANNING_KEY);
+    return;
+  }
+
+  // Sinon on est sur la page d'accueil
   document.querySelectorAll(".home-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       loadPlanning(btn.dataset.type);
     });
   });
+
 });
