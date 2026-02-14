@@ -115,33 +115,25 @@ if (overlay) {
 
   } else {
   calendar = new FullCalendar.Calendar(calendarEl, {
-  initialView: "timeGridWeek",
+  initialView: window.innerWidth < 768 
+    ? "timeGridDay" 
+    : "timeGridWeek",
   locale: "fr",
   firstDay: 1,
   allDaySlot: false,
-
   height: "100%",
   expandRows: true,
-
   slotMinTime: "07:00:00",
   slotMaxTime: "24:00:00",
-
   nowIndicator: true,
-
   headerToolbar: {
     left: "prev,next today",
     center: "title",
     right: "timeGridWeek,timeGridDay"
   },
-
-  eventClick: function(info) {
-    alert(info.event.title + "\n" + info.event.start.toLocaleString());
-  },
-
   eventDidMount: function(info) {
     info.el.style.background = info.event.extendedProps.gradient;
   },
-
   events
 });
 
@@ -156,17 +148,7 @@ if (overlay) {
     }, 50);
   }
 
-  window.addEventListener("resize", function() {
-  if (!calendar) return;
 
-  if (window.innerWidth < 768) {
-    calendar.changeView("timeGridDay");
-  } else {
-    calendar.changeView("timeGridWeek");
-  }
-
-  calendar.updateSize();
-});
 
 
 

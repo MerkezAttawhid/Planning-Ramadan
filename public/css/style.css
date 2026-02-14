@@ -2,12 +2,82 @@
    BASE
 ========================= */
 
-html, body {
+body {
   margin: 0;
-  height: 100%;
   font-family: Arial, sans-serif;
   background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
 }
+
+
+/* =========================
+   PAGE D’ACCUEIL
+========================= */
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-container {
+  text-align: center;
+}
+
+.home-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+.home-logo {
+  width: 180px;
+  max-width: 80%;
+  margin-bottom: 30px;
+}
+
+.home-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-btn {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+  transition: 0.25s ease;
+}
+
+.home-btn:hover {
+  transform: translateY(-4px);
+}
+
+.home-btn.filles {
+  background: linear-gradient(135deg, #f9a8d4, #f472b6);
+}
+
+.home-btn.garcons {
+  background: linear-gradient(135deg, #93c5fd, #60a5fa);
+}
+
+.home-btn.femmes {
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+}
+
+.home-btn.hommes {
+  background: linear-gradient(135deg, #6ee7b7, #34d399);
+}
+
 
 /* =========================
    PAGE PLANNING FULLSCREEN
@@ -56,6 +126,7 @@ html, body {
   flex: 1;
 }
 
+
 /* =========================
    LOADER
 ========================= */
@@ -71,6 +142,7 @@ html, body {
   z-index: 50;
   border-radius: 16px;
 }
+
 
 /* =========================
    FULLCALENDAR STYLE
@@ -110,6 +182,7 @@ html, body {
   color: white !important;
 }
 
+
 /* EVENTS */
 
 .fc-event {
@@ -135,11 +208,18 @@ html, body {
   line-height: 1.2 !important;
 }
 
+
 /* =========================
    MOBILE – SEMAINE AVEC SCROLL
 ========================= */
 
 @media (max-width: 768px) {
+
+  .home-btn {
+    width: 90px;
+    height: 90px;
+    font-size: 0.85rem;
+  }
 
   .fc-scroller-harness {
     overflow-x: auto !important;
