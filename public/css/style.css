@@ -281,3 +281,28 @@ html, body {
   }
 
 }
+/* Réduction intelligente hauteur créneaux */
+.fc-timegrid-event {
+  min-height: auto !important;
+}
+
+.fc-event {
+  padding: 6px 8px !important;
+  font-size: 0.85rem !important;
+}
+
+.fc-timegrid-slot {
+  height: 30px !important;
+}
+@media (max-width: 768px) {
+
+  .fc-timegrid-slot {
+    height: 24px !important;
+  }
+
+  .fc-event {
+    font-size: 0.75rem !important;
+    padding: 4px 6px !important;
+  }
+
+}
