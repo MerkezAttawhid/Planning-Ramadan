@@ -188,31 +188,7 @@ body.planning-open .home-buttons {
    ========================= */
 
 @media (max-width: 768px) {
-/* réduit la hauteur totale du planning */
-  #planning-section {
-    height: calc(100vh - 180px);
-  }
 
-  /* augmente la hauteur des créneaux */
-  .fc-timegrid-slot {
-    height: 45px !important;
-  }
-
-  /* rend les events plus visibles */
-  .fc-timegrid-event {
-    min-height: 55px !important;
-  }
-
-  .fc-event {
-    font-size: 0.85rem !important;
-    padding: 8px !important;
-    border-radius: 12px !important;
-  }
-
-  /* réduit légèrement la taille des heures */
-  .fc-timegrid-slot-label {
-    font-size: 0.7rem !important;
-  }
   .home-title {
     font-size: 1.5rem;
   }
