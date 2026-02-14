@@ -208,15 +208,9 @@ body.planning-open .home-buttons {
     height: calc(100vh - 210px);
   }
 
-  /* scroll horizontal UNIQUEMENT */
-  .fc-scroller-harness {
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-  }
+  
 
-  .fc-timegrid {
-    min-width: 950px;
-  }
+
 
   .fc .fc-toolbar-title {
     font-size: 0.95rem;
