@@ -5,11 +5,9 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
   font-family: Arial, sans-serif;
   background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
 }
-
 
 /* =========================
    PAGE D’ACCUEIL
@@ -65,24 +63,10 @@ html, body {
   transform: translateY(-5px);
 }
 
-/* Couleurs */
-
-.home-btn.filles {
-  background: linear-gradient(135deg, #f9a8d4, #f472b6);
-}
-
-.home-btn.garcons {
-  background: linear-gradient(135deg, #93c5fd, #60a5fa);
-}
-
-.home-btn.femmes {
-  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
-}
-
-.home-btn.hommes {
-  background: linear-gradient(135deg, #6ee7b7, #34d399);
-}
-
+.home-btn.filles { background: linear-gradient(135deg, #f9a8d4, #f472b6); }
+.home-btn.garcons { background: linear-gradient(135deg, #93c5fd, #60a5fa); }
+.home-btn.femmes { background: linear-gradient(135deg, #c4b5fd, #a78bfa); }
+.home-btn.hommes { background: linear-gradient(135deg, #6ee7b7, #34d399); }
 
 /* =========================
    MOBILE – ACCUEIL
@@ -107,36 +91,41 @@ html, body {
 
 }
 
-
 /* =========================
-   PAGE PLANNING FULLSCREEN
+   PAGE PLANNING
 ========================= */
 
 .planning-page {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  /* 🔥 on enlève overflow:hidden ici */
+}
+
+.planning-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: white;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
 }
 
 .planning-container {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* bloque scroll vertical global */
 }
 
 .calendar-wrapper {
   flex: 1;
   position: relative;
   display: flex;
-  overflow: hidden;
 }
 
 #calendar {
   flex: 1;
 }
-
 
 /* =========================
    LOADER
@@ -146,13 +135,11 @@ html, body {
   position: absolute;
   inset: 0;
   background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 50;
 }
-
 
 /* =========================
    FULLCALENDAR STYLE
@@ -188,14 +175,12 @@ html, body {
   color: #334155 !important;
   border-radius: 12px !important;
   padding: 6px 12px !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .fc .fc-button-active {
   background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
   color: white !important;
 }
-
 
 /* EVENTS */
 
@@ -205,76 +190,29 @@ html, body {
   padding: 8px 10px !important;
   font-weight: 500 !important;
   color: white !important;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  transition: 0.2s ease;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
 }
-
-.fc-timegrid-event {
-  min-height: 55px !important;
-}
-
-.fc-event-title,
-.fc-event-time {
-  white-space: normal !important;
-  line-height: 1.2 !important;
-}
-
 
 /* =========================
-   MOBILE – SEMAINE AVEC SCROLL
+   MOBILE – SEMAINE SCROLL
 ========================= */
 
 @media (max-width: 768px) {
 
-  /* Le scroll horizontal doit être ici */
+  /* scroll horizontal uniquement */
   .fc-scroller {
     overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch;
+    overflow-y: auto !important;
   }
 
-  /* On élargit seulement la grille */
-  .fc-scrollgrid {
-    min-width: 900px;
+  /* largeur semaine */
+  .fc .fc-timegrid,
+  .fc .fc-col-header,
+  .fc .fc-timegrid-body {
+    min-width: 1100px !important;
   }
 
   .fc-toolbar-title {
     font-size: 1rem !important;
   }
 
-  .fc-event {
-    font-size: 0.8rem !important;
-  }
 }
-
-/* =========================
-   FIX MOBILE SCROLL WEEK
-   (à mettre TOUT EN BAS du CSS)
-========================= */
-
-/* 1) Ne jamais bloquer le scroll au niveau page */
-.planning-page {
-  overflow: visible !important;
-}
-
-/* 2) On garde un layout plein écran, mais sans casser FullCalendar */
-.planning-container,
-.calendar-wrapper {
-  overflow: hidden !important;
-}
-
-/* 3) C'est CE scroller qui doit gérer le scroll horizontal */
-@media (max-width: 768px) {
-
-  /* FullCalendar met souvent le scroll sur .fc-scroller */
-  .fc-scroller,
-  .fc-scroller-harness {
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch;
-  }
-
-
