@@ -24,18 +24,31 @@ html, body {
   margin: 0 auto;
 }
 
-.home-title {
-  font-size: 2.4rem;
-  font-weight: 600;
-  margin-bottom: 30px;
-  color: #1e293b;
+/* =========================
+   BANNIÈRE RAMADAN
+========================= */
+
+.home-banner {
+  width: 100%;
+  max-width: 900px;
+  height: 240px;              /* 🔥 hauteur contrôlée */
+  object-fit: cover;          /* coupe proprement sans déformer */
+  border-radius: 18px;
+  margin-bottom: 40px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+@media (max-width: 768px) {
+
+  .home-banner {
+    height: 100px;     /* 👈 très propre sur téléphone */
+    max-width: 95%;
+    margin-bottom: 20px;
+  }
+
 }
 
-.home-logo {
-  width: 220px;
-  max-width: 85%;
-  margin-bottom: 40px;
-}
+
+
 
 .home-buttons {
   display: flex;
