@@ -114,7 +114,7 @@ if (overlay) {
     }, 50);
 
   } else {
-   calendar = new FullCalendar.Calendar(calendarEl, {
+  calendar = new FullCalendar.Calendar(calendarEl, {
   initialView: "timeGridWeek",
   locale: "fr",
   firstDay: 1,
@@ -147,6 +147,7 @@ if (overlay) {
 
 
 
+
     calendar.render();
 
     setTimeout(() => {
@@ -160,14 +161,13 @@ if (overlay) {
 
   if (window.innerWidth < 768) {
     calendar.changeView("timeGridDay");
-    calendar.setOption("height", "auto");
   } else {
     calendar.changeView("timeGridWeek");
-    calendar.setOption("height", "100%");
   }
 
   calendar.updateSize();
 });
+
 
 
   /* ---------- UI : fin loading ---------- */
