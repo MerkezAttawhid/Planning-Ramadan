@@ -264,3 +264,26 @@ body {
   }
 
 }
+/* =========================
+   EVENTS TEXTE COMPLET
+   ========================= */
+
+.fc-timegrid-event {
+  min-height: 60px !important;
+}
+
+.fc-event-main {
+  overflow: visible !important;
+}
+
+.fc-event-title,
+.fc-event-time {
+  white-space: normal !important;
+  line-height: 1.2 !important;
+}
+
+.fc-event {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
