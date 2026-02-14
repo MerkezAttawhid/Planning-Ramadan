@@ -40,12 +40,12 @@ html, body {
 @media (max-width: 768px) {
 
   .home-banner {
-    height: 100px;     /* 👈 très propre sur téléphone */
     max-width: 95%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
 }
+
 
 
 
