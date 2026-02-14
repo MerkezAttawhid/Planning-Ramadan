@@ -270,3 +270,14 @@ html, body {
   }
 
 }
+/* Réduit légèrement la hauteur des heures */
+.fc-timegrid-slot {
+  height: 35px !important;
+}
+@media (max-width: 768px) {
+
+  .fc-timegrid-slot {
+    height: 28px !important;
+  }
+
+}
