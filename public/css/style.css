@@ -361,3 +361,23 @@ html, body {
   }
 
 }
+/* =========================
+   FIX HEADER MOBILE SCROLL
+========================= */
+
+.planning-header {
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+
+  .planning-header {
+    position: relative;
+  }
+
+  .planning-page {
+    overflow-x: hidden;
+  }
+
+}
