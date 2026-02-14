@@ -262,7 +262,7 @@ html, body {
   .fc .fc-timegrid,
   .fc .fc-col-header,
   .fc .fc-timegrid-body {
-    min-width: 500px !important;
+    min-width: 650px !important;
   }
 
   .fc-toolbar-title {
