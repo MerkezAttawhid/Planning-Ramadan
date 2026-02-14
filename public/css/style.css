@@ -417,3 +417,19 @@ html, body {
   color: #059669;
   background: #ecfdf5;
 }
+/* Mushaf animé */
+.loader-mushaf {
+  margin-bottom: 20px;
+}
+
+.loader-mushaf img {
+  width: 70px;
+  animation: floatMushaf 2s ease-in-out infinite;
+}
+
+/* petite animation flottante */
+@keyframes floatMushaf {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
