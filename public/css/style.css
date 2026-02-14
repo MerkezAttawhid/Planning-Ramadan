@@ -300,7 +300,7 @@ body {
   }
 
   .fc-timegrid {
-    min-width: 900px; /* largeur totale semaine */
+    min-width: 900px;
   }
 
   .fc-col-header,
@@ -313,3 +313,4 @@ body {
   }
 
 }
+
