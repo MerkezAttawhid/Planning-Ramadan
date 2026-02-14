@@ -311,7 +311,7 @@ html, body {
   .fc .fc-timegrid,
   .fc .fc-col-header,
   .fc .fc-timegrid-body {
-    min-width: 720 !important;
+    min-width: 720px !important;
   }
 
   .fc-toolbar-title {
