@@ -231,3 +231,165 @@ body.planning-open .home-buttons {
     line-height: 1.1;
   }
 }
+/* =========================
+   FULLCALENDAR MODERN UI
+   ========================= */
+
+/* Toolbar */
+.fc .fc-toolbar {
+  margin-bottom: 12px;
+}
+
+.fc .fc-button {
+  background: #f1f5f9;
+  border: none;
+  color: #334155;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.fc .fc-button:hover {
+  background: #e2e8f0;
+}
+
+.fc .fc-button-active {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+/* Title */
+.fc .fc-toolbar-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Grille plus clean */
+.fc .fc-timegrid-slot {
+  border-color: #f1f5f9;
+}
+
+.fc .fc-timegrid-col-frame {
+  border-right: 1px solid #f1f5f9;
+}
+
+.fc .fc-scrollgrid {
+  border: none;
+}
+
+/* Heure actuelle */
+.fc .fc-timegrid-now-indicator-line {
+  border-color: #ef4444;
+  border-width: 2px;
+}
+
+/* Events modernes */
+.fc .fc-event {
+  border: none !important;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fc .fc-event:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* Slot heure plus discret */
+.fc .fc-timegrid-slot-label {
+  color: #64748b;
+  font-size: 0.75rem;
+}
+
+/* Fond jours weekend léger */
+.fc-day-sat,
+.fc-day-sun {
+  background-color: #f8fafc;
+}
+/* =========================
+   FULLCALENDAR MODERN PRO
+   ========================= */
+
+/* Enlève la bordure générale */
+.fc-scrollgrid,
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border: none !important;
+}
+
+/* Lignes horaires ultra légères */
+.fc-timegrid-slot {
+  border-top: 1px solid #f1f5f9 !important;
+}
+
+/* Colonnes séparées légèrement */
+.fc-timegrid-col {
+  border-right: 1px solid #f8fafc !important;
+}
+
+/* Header jours plus clean */
+.fc-col-header-cell {
+  background: #ffffff;
+  font-weight: 600;
+  color: #1e293b;
+  padding: 12px 0;
+}
+
+/* Toolbar moderne */
+.fc .fc-toolbar {
+  margin-bottom: 18px;
+}
+
+.fc .fc-button {
+  background: #f1f5f9 !important;
+  border: none !important;
+  color: #334155 !important;
+  border-radius: 10px !important;
+  padding: 6px 14px !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.fc .fc-button:hover {
+  background: #e2e8f0 !important;
+}
+
+.fc .fc-button-active {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+/* Titre plus premium */
+.fc-toolbar-title {
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px;
+}
+
+/* Events plus beaux */
+.fc-event {
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 8px !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: all 0.2s ease;
+}
+
+.fc-event:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Supprimer le fond jaune du weekend */
+.fc-day-sat,
+.fc-day-sun {
+  background: #ffffff !important;
+}

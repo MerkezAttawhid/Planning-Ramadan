@@ -93,28 +93,32 @@ async function loadPlanning(type) {
 
   } else {
     calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: "timeGridWeek",
-      locale: "fr",
-      firstDay: 1,
-      allDaySlot: false,
+  initialView: "timeGridWeek",
+  locale: "fr",
+  firstDay: 1,
+  allDaySlot: false,
 
-      /* 🔥 tout visible */
-      height: "100%",
-      expandRows: true,
+  height: "100%",
+  expandRows: true,
 
-      slotMinTime: "07:00:00",
-      slotMaxTime: "24:00:00",
+  slotMinTime: "07:00:00",
+  slotMaxTime: "24:00:00",
 
-      nowIndicator: true,
+  nowIndicator: true,
 
-      headerToolbar: {
-        left: "prev,next today",
-        center: "title",
-        right: "timeGridWeek,timeGridDay"
-      },
+  headerToolbar: {
+    left: "prev,next today",
+    center: "title",
+    right: "timeGridWeek,timeGridDay"
+  },
 
-      events
-    });
+  eventClick: function(info) {
+    alert(info.event.title + "\n" + info.event.start.toLocaleString());
+  },
+
+  events
+});
+
 
     calendar.render();
 
