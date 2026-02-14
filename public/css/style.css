@@ -306,14 +306,3 @@ html, body {
   }
 
 }
-/* =========================
-   MOBILE – OPTIMISATION BLOC
-========================= */
-
-@media (max-width: 768px) {
-
-  .fc-event-time {
-    display: none !important;
-  }
-
-}
