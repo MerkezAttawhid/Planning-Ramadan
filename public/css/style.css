@@ -288,3 +288,28 @@ body {
   flex-direction: column !important;
   justify-content: center !important;
 }
+/* =========================
+   MOBILE – SCROLL HORIZONTAL
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .fc-scroller-harness {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+  }
+
+  .fc-timegrid {
+    min-width: 900px; /* largeur totale semaine */
+  }
+
+  .fc-col-header,
+  .fc-timegrid-body {
+    min-width: 900px;
+  }
+
+  .fc-event {
+    font-size: 0.85rem !important;
+  }
+
+}
