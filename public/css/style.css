@@ -277,11 +277,4 @@ html, body {
     -webkit-overflow-scrolling: touch;
   }
 
-  /* On force la largeur de la semaine */
-  .fc .fc-scrollgrid,
-  .fc .fc-timegrid,
-  .fc .fc-col-header,
-  .fc .fc-timegrid-body {
-    min-width: 1100px !important;
-  }
-}
+
