@@ -120,8 +120,8 @@ if (overlay) {
   firstDay: 1,
   allDaySlot: false,
 
-  height: "auto",
-  expandRows: false,
+  height: "100%",
+  expandRows: true,
 
   slotMinTime: "07:00:00",
   slotMaxTime: "24:00:00",

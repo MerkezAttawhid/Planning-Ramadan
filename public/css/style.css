@@ -1,120 +1,20 @@
 /* =========================
    BASE
-   ========================= */
+========================= */
 
-body {
+html, body {
   margin: 0;
+  height: 100%;
   font-family: Arial, sans-serif;
   background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
 }
 
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 12px;
-}
-
-/* =========================
-   PAGE D’ACCUEIL
-   ========================= */
-
-.home {
-  min-height: 100vh;
-}
-
-.home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 30px;
-  text-align: center;
-}
-
-/* =========================
-   TITRE
-   ========================= */
-
-.home-title {
-  font-size: 2.2rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #1e293b;
-}
-
-/* =========================
-   LOGO
-   ========================= */
-
-.home-logo {
-  width: 150px;
-  margin-bottom: 25px;
-}
-
-/* =========================
-   BOUTONS
-   ========================= */
-
-.home-buttons {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.home-btn {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-
-  box-shadow: 0 14px 32px rgba(0,0,0,0.18);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.home-btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.28);
-}
-
-.home-btn.active {
-  box-shadow:
-    0 0 0 6px rgba(255,255,255,0.8),
-    0 14px 32px rgba(0,0,0,0.18);
-}
-
-/* Couleurs */
-
-.home-btn.filles {
-  background: linear-gradient(135deg, #f9a8d4, #f472b6);
-}
-
-.home-btn.garcons {
-  background: linear-gradient(135deg, #93c5fd, #60a5fa);
-}
-
-.home-btn.femmes {
-  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
-}
-
-.home-btn.hommes {
-  background: linear-gradient(135deg, #6ee7b7, #34d399);
-}
-
 /* =========================
    PAGE PLANNING FULLSCREEN
-   ========================= */
+========================= */
 
 .planning-page {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -141,22 +41,24 @@ body {
 
 .planning-container {
   flex: 1;
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
 }
 
 .calendar-wrapper {
+  flex: 1;
   position: relative;
+  display: flex;
 }
 
-/* 🔥 IMPORTANT */
 #calendar {
-  height: auto !important;
+  flex: 1;
 }
-
 
 /* =========================
    LOADER
-   ========================= */
+========================= */
 
 .calendar-overlay {
   position: absolute;
@@ -170,31 +72,9 @@ body {
   border-radius: 16px;
 }
 
-.loader-box {
-  background: white;
-  padding: 24px 30px;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  text-align: center;
-}
-
-.loader-spinner {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 4px solid #e2e8f0;
-  border-top: 4px solid #6366f1;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
 /* =========================
    FULLCALENDAR STYLE
-   ========================= */
+========================= */
 
 .fc-scrollgrid,
 .fc-theme-standard td,
@@ -211,7 +91,7 @@ body {
 }
 
 .fc-toolbar-title {
-  font-size: 1.6rem !important;
+  font-size: 1.4rem !important;
   font-weight: 600 !important;
   color: #1e293b;
 }
@@ -221,7 +101,7 @@ body {
   border: none !important;
   color: #334155 !important;
   border-radius: 12px !important;
-  padding: 8px 16px !important;
+  padding: 6px 12px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
@@ -230,51 +110,23 @@ body {
   color: white !important;
 }
 
+/* EVENTS */
+
 .fc-event {
   border: none !important;
   border-radius: 16px !important;
-  padding: 10px 12px !important;
+  padding: 8px 10px !important;
   font-weight: 500 !important;
   color: white !important;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   transition: 0.2s ease;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
 }
-
-.fc-event:hover {
-  transform: translateY(-3px);
-}
-
-/* =========================
-   RESPONSIVE
-   ========================= */
-
-@media (max-width: 768px) {
-
-  .home-btn {
-    width: 90px;
-    height: 90px;
-    font-size: 0.85rem;
-  }
-
-  .fc-toolbar-title {
-    font-size: 1rem !important;
-  }
-
-  .fc-event {
-    font-size: 0.75rem !important;
-  }
-
-}
-/* =========================
-   EVENTS TEXTE COMPLET
-   ========================= */
 
 .fc-timegrid-event {
-  min-height: 60px !important;
-}
-
-.fc-event-main {
-  overflow: visible !important;
+  min-height: 55px !important;
 }
 
 .fc-event-title,
@@ -283,14 +135,9 @@ body {
   line-height: 1.2 !important;
 }
 
-.fc-event {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-}
 /* =========================
-   MOBILE – SCROLL HORIZONTAL
-   ========================= */
+   MOBILE – SEMAINE AVEC SCROLL
+========================= */
 
 @media (max-width: 768px) {
 
@@ -299,18 +146,18 @@ body {
     overflow-y: hidden !important;
   }
 
-  .fc-timegrid {
-    min-width: 900px;
-  }
-
+  .fc-timegrid,
   .fc-col-header,
   .fc-timegrid-body {
-    min-width: 900px;
+    min-width: 950px;
+  }
+
+  .fc-toolbar-title {
+    font-size: 1rem !important;
   }
 
   .fc-event {
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
   }
 
 }
-
