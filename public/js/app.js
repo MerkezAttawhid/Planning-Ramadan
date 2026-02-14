@@ -135,6 +135,21 @@ async function loadPlanning(type) {
     }, 50);
   }
 
+  window.addEventListener("resize", function() {
+  if (!calendar) return;
+
+  if (window.innerWidth < 768) {
+    calendar.changeView("timeGridDay");
+    calendar.setOption("height", "auto");
+  } else {
+    calendar.changeView("timeGridWeek");
+    calendar.setOption("height", "100%");
+  }
+
+  calendar.updateSize();
+});
+
+
   /* ---------- UI : fin loading ---------- */
 
   overlay.style.display = "none";
