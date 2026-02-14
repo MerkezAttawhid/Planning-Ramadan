@@ -229,15 +229,16 @@ html, body {
 
 @media (max-width: 768px) {
 
-  .fc-scroller-harness {
+  /* Le scroll horizontal doit être ici */
+  .fc-scroller {
     overflow-x: auto !important;
     overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .fc-timegrid,
-  .fc-col-header,
-  .fc-timegrid-body {
-    min-width: 950px;
+  /* On élargit seulement la grille */
+  .fc-scrollgrid {
+    min-width: 900px;
   }
 
   .fc-toolbar-title {
@@ -247,8 +248,8 @@ html, body {
   .fc-event {
     font-size: 0.8rem !important;
   }
-
 }
+
 /* =========================
    FIX MOBILE SCROLL WEEK
    (à mettre TOUT EN BAS du CSS)
